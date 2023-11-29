@@ -1,45 +1,69 @@
-
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
 #include "main.h"
 
-int main(int ac __attribute__((unused)), char **av)
-{
-	char *buffer, *path = NULL;
-	size_t *bufferSize = NULL;
-	int value = 0;
+int main(int ac, char **av) {
+    char *buffer = NULL;
+    size_t bufferSize = 0;
+    int value = 0;
+    char *path = NULL;
+    char **env;
+    int i;
+    char *new_buffer = NULL;
+    char *slash = "/";
 
-	bufferSize = malloc(sizeof(size_t));
-
-	while(*environ != NULL)
+    for (env = environ; *env != NULL; env++) 
 	{
-		if (strncmp(*environ, "PATH=", 5) == 0)
+        if (strncmp(*env, "PATH=", 5) == 0) 
 		{
-			path = *environ + 5;
-		}
-		environ++;
-	}
-	printf("Path: %s", path);
+            path = *env + 5;
+            break;
+        }
+    }
+    printf("Path: %s\n", path);
 
-	while (1)
+    while (1) 
 	{
-		printf("$ ");
-		value = getline(&buffer, bufferSize, stdin);
-		if (value == -1)
+        printf("$ ");
+        value = getline(&buffer, &bufferSize, stdin);
+        if (value == -1) 
 		{
-			printf("error");
-			continue;
-		}
-		if (strcmp(buffer, "exit/n") == 0)
+            printf("error\n");
+            continue;
+        }
+        if (strcmp(buffer, "exit\n") == 0) 
 		{
-			free(buffer);
-			buffer = NULL;
-			exit(1);
-		}
+            break;
+        }
 
-		while (*av != NULL)
-   		{
-			printf("%s/n", *av);
-			av++;
-   		}
-	}
-	return (0);
+        for (i = 1; i < ac; i++) 
+		{
+            printf("%s\n", av[i]);
+        }
+
+        if (path != NULL) {
+            int needSlash = (path[0] != '/');
+            new_buffer = (char *)malloc(strlen(path) + needSlash + 1); // +1 for null terminator
+            if (new_buffer != NULL) 
+			{
+                if (needSlash) 
+				{
+                    strcpy(new_buffer, slash);
+                } 
+				else 
+				{
+                    new_buffer[0] = '\0'; // Initialize to an empty string
+                }
+                strcat(new_buffer, path);
+                printf("new_buffer: %s\n", new_buffer);
+                free(new_buffer);
+            }
+        }
+        free(buffer);
+        buffer = NULL; // Reset buffer to NULL for the next getline call
+    }
+
+    return 0;
 }
