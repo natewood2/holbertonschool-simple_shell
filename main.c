@@ -1,35 +1,45 @@
 
 #include "main.h"
 
-char *_strtok(char *str, const char *delim)
-{
-	char *token = strtok(str, " ");
-
-	while (token != NULL)
-	{
-		
-	}
-}
 int main(int ac __attribute__((unused)), char **av)
 {
-	char *buffer = NULL;
-	size_t *bufferSize = 0;
+	char *buffer, *path = NULL;
+	size_t *bufferSize = NULL;
+	int value = 0;
 
-	bufferSize = malloc(sizeof(int));
+	bufferSize = malloc(sizeof(size_t));
 
-	if (bufferSize == NULL) 
-		free(bufferSize);
+	while(*environ != NULL)
+	{
+		if (strncmp(*environ, "PATH=", 5) == 0)
+		{
+			path = *environ + 5;
+		}
+		environ++;
+	}
+	printf("Path: %s", path);
 
 	while (1)
 	{
 		printf("$ ");
-		getline(&buffer, bufferSize, stdin);
+		value = getline(&buffer, bufferSize, stdin);
+		if (value == -1)
+		{
+			printf("error");
+			continue;
+		}
+		if (strcmp(buffer, "exit/n") == 0)
+		{
+			free(buffer);
+			buffer = NULL;
+			exit(1);
+		}
+
 		while (*av != NULL)
-    	{
-			printf("Argue away:%s\n", *av);
+   		{
+			printf("%s/n", *av);
 			av++;
-    	}
+   		}
 	}
-    // Return 0 to indicate successful execution
-    return (0);
+	return (0);
 }

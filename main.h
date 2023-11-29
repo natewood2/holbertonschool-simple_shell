@@ -10,13 +10,15 @@
 /* Include necessary libraries for standard I/O, memory management, etc. */
 #include <stdio.h>
 #include <stdlib.h>
+#include <stddef.h>
 #include <string.h>
 #include <unistd.h>
 #include <sys/types.h>
 
+extern char **environ;
 /* Define the main function, which is the entry point of the program. */
 int main(int ac __attribute__((unused)), char **av);
 
-#endif
-//
-//This header file provides a clear and concise commenting structure for your main function header file. It includes necessary libraries for standard I/O, memory management, etc., and defines the main function as the entry point of the program..</s>
+char *_strtok(char *str, const char *delim);
+
+#endif 
