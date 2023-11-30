@@ -20,5 +20,8 @@ extern char **environ;
 int main(int ac __attribute__((unused)), char **av);
 
 char *_strtok(char *str, const char *delim);
+char *find_command_in_path(const char *cmd);
+int can_execute_command(const char *full_path);
+//int can_execute_command(const char *full_path, char *const argv[]);
 
 #endif 
