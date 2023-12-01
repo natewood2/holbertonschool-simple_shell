@@ -3,6 +3,7 @@
 #include <string.h>
 #include <unistd.h>
 #include "main.h"
+#include "command.h"
 
 int main(int ac __attribute__((unused)), char **av __attribute__((unused))) 
 {
@@ -10,10 +11,10 @@ int main(int ac __attribute__((unused)), char **av __attribute__((unused)))
     size_t bufferSize = 0;
     int value;
     char *fullPath;
-    pid_t pid;      // Parent
-    char *args[10]; // Array to hold command and arguments
-    int argCount;   // Count of arguments
-    char *token;    // For tokenizing the input
+    pid_t pid;     
+    char *args[10];
+    int argCount; 
+    char *token;
 
     while (1) 
     {
@@ -25,14 +26,14 @@ int main(int ac __attribute__((unused)), char **av __attribute__((unused)))
             free(buffer);
             exit(EXIT_FAILURE);
         }
-        buffer[strcspn(buffer, "\n")] = 0; // Remove newline character
+        buffer[strcspn(buffer, "\n")] = 0;
 
         if (strcmp(buffer, "exit") == 0) 
         {
             break;
         }
 
-        // Tokenize the input
+       
         argCount = 0;
         token = strtok(buffer, " ");
         while (token != NULL && argCount < 10) 
@@ -42,7 +43,7 @@ int main(int ac __attribute__((unused)), char **av __attribute__((unused)))
         }
         args[argCount] = NULL;
 
-        // Find the full path of the command
+       
         fullPath = find_command_in_path(args[0]);
         if (fullPath == NULL) 
         {
@@ -50,23 +51,20 @@ int main(int ac __attribute__((unused)), char **av __attribute__((unused)))
             continue;
         }
 
-        // Fork and execute the command using execve
+        
         pid = fork();
         if (pid == 0) 
         {
-            // Child process
             execve(fullPath, args, environ);
             fprintf(stderr, "Failed to execute '%s'\n", fullPath);
-            exit(EXIT_FAILURE);  // Ensure child process exits after execve failure
+            exit(EXIT_FAILURE); 
         } 
         else if (pid > 0) 
         {
-            // Parent process
-            wait(NULL);  // Wait for child process to finish
+            wait(NULL);
         } 
         else 
         {
-            // Fork failed
             fprintf(stderr, "Failed to fork\n");
         }
 
