@@ -1,9 +1,3 @@
-
-/*
- * This is a header file for the main function of a C program.
- * It includes necessary libraries and defines the main function.
- */
-
 #ifndef MAIN_H
 #define MAIN_H
 
@@ -22,6 +16,5 @@ int main(int ac __attribute__((unused)), char **av);
 char *_strtok(char *str, const char *delim);
 char *find_command_in_path(const char *cmd);
 int can_execute_command(const char *full_path);
-//int can_execute_command(const char *full_path, char *const argv[]);
 
-#endif 
+#endif
