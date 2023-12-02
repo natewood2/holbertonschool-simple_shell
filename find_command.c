@@ -32,15 +32,14 @@ char *find_command_in_path(const char *cmd)
 	if (full_path)
 	{
 		snprintf(full_path, full_path_size, "%s/%s", token, cmd);
+	}
 	if (can_execute_command(full_path))
 	{
 		free(path);
 		return (full_path);
 	}
 	free(full_path);
-	}
 	token = strtok(NULL, ":");
-}
 	free(path);
 	return (NULL);
 }
