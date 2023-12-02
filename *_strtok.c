@@ -1,5 +1,10 @@
 #include "main.h"
-
+/**
+ * _strtok - string token
+ * @str: string
+ * @delim: delimitor
+ * Return: token
+ */
 char *_strtok(char *str, const char *delim)
 {
 	char *token = strtok(str, delim);
