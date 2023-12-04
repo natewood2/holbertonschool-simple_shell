@@ -6,7 +6,7 @@
 #include "main.h"
 #include "command.h"
 
-int main(int ac __attribute__((unused)), char **av __attribute__((unused))) 
+int main(int ac __attribute__((unused)), char **av __attribute__((unused)))
 {
     char *buffer = NULL;
     size_t bufferSize = 0;
