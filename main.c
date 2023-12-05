@@ -11,27 +11,26 @@ int main(int ac __attribute__((unused)), char **av __attribute__((unused)))
     char *buffer = NULL;
     size_t bufferSize = 0;
     ssize_t length;
-    char *pos;
 
     while (1) 
     {
         if (isatty(STDIN_FILENO)) 
         {
             printf("$ ");
+            fflush(stdout);
         }
         length = getline(&buffer, &bufferSize, stdin);
 
-        if ((pos = strchr(buffer, '\n')) != NULL)
-        {
-            *pos = '\0';
-        }   
-
-        if (length == -1) 
+        if (length <= 0) 
         {
             printf("\n");
             break;
         }
-        buffer[strcspn(buffer, "\n")] = '\0';
+        if (buffer[length - 1] == '\n')
+        {
+            buffer[length - 1] = '\0';
+            length--;
+        }
         if (buffer[0] == '\0') 
         {
             continue;
