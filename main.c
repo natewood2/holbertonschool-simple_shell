@@ -26,7 +26,7 @@ int main(int ac __attribute__((unused)), char **av __attribute__((unused)))
             break;
         }
         buffer[strcspn(buffer, "\n")] = '\0';
-        buffer[strlen(buffer) - 1] = '\0';
+        buffer[strlen(buffer)] = '\0';
         if (buffer[0] == '\0') 
         {
             continue;
