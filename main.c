@@ -15,15 +15,15 @@ int main(void)
     while (1) 
     {
         printf("$ ");
-
         length = getline(&buffer, &bufferSize, stdin);
-        if (length <= 0) 
+
+        if (length == -1) 
         {
             printf("\n");
             break;
         }
 
-        if (buffer[length - 1] == '\n') 
+        if (length > 0 && buffer[length - 1] == '\n') 
         {
             buffer[length - 1] = '\0';
         }
@@ -32,5 +32,5 @@ int main(void)
     }
 
     free(buffer);
-    return (0);
+    return 0;
 }
