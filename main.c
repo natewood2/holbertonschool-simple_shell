@@ -26,7 +26,6 @@ int main(int ac __attribute__((unused)), char **av __attribute__((unused)))
             break;
         }
 
-        buffer[strcspn(buffer, "\n")] = 0;
         if (buffer[0] == '\0') 
         {
             continue;
@@ -38,6 +37,7 @@ int main(int ac __attribute__((unused)), char **av __attribute__((unused)))
         }
 
         process_command(buffer);
+
     }
 
     free(buffer);
