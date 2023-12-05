@@ -11,6 +11,7 @@ int main(int ac __attribute__((unused)), char **av __attribute__((unused)))
     char *buffer = NULL;
     size_t bufferSize = 0;
     ssize_t length;
+    int i;
 
     while (1) 
     {
@@ -26,12 +27,13 @@ int main(int ac __attribute__((unused)), char **av __attribute__((unused)))
             printf("\n");
             break;
         }
-        if (buffer[length - 1] == '\n')
+        for (i = 0; i < length; i++) 
         {
-            buffer[length - 1] = '\0';
-            length--;
+            if (buffer[i] == '\n') 
+            {
+                buffer[i] = ' ';
+            }
         }
-        trim_trailing_spaces(buffer);
 
         if (buffer[0] == '\0') 
         {
