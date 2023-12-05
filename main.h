@@ -23,6 +23,7 @@ void execute_command(char *fullPath, char **args);
 int check_input_failure(ssize_t length, char *buffer);
 ssize_t read_input_line(char **buffer, size_t *bufferSize);
 int is_absolute_or_relative_path(const char *cmd);
+void trim_trailing_spaces(char *str);
 
 
 #endif
