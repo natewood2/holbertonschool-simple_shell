@@ -14,9 +14,12 @@ int main(void)
 
     while (1) 
     {
-        printf("$ ");
-        fflush(stdout);
-        
+        if (isatty(STDIN_FILENO))
+        {
+            printf("$ ");
+            fflush(stdout);
+        }
+
         length = getline(&buffer, &bufferSize, stdin);
 
         if (length <= 0) 
