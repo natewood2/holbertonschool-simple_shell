@@ -6,7 +6,7 @@
 #include "main.h"
 #include "command.h"
 
-int main(int ac __attribute__((unused)), char **av __attribute__((unused)))
+int main(int ac __attribute__((unused)), char **av __attribute__((unused))) 
 {
     char *buffer = NULL;
     size_t bufferSize = 0;
@@ -14,12 +14,23 @@ int main(int ac __attribute__((unused)), char **av __attribute__((unused)))
 
     while (1) 
     {
-        length = read_input_line(&buffer, &bufferSize);
+        printf("$ ");
+        length = getline(&buffer, &bufferSize, stdin);
 
-        if (check_input_failure(length, buffer)) 
+        if (length == -1) 
         {
-            exit(EXIT_FAILURE);
+            if (bufferSize > 0) 
+            {
+                printf("\n");
+                break;
+            } 
+            else 
+            {
+                fprintf(stderr, "Error reading input\n");
+                continue;
+            }
         }
+        buffer[strcspn(buffer, "\n")] = 0;
 
         if (strcmp(buffer, "exit") == 0) 
         {
@@ -30,5 +41,5 @@ int main(int ac __attribute__((unused)), char **av __attribute__((unused)))
     }
 
     free(buffer);
-    return 0;
+    return (0);
 }
