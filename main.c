@@ -22,18 +22,15 @@ int main(int ac __attribute__((unused)), char **av __attribute__((unused)))
 
         if (length == -1) 
         {
-            if (bufferSize > 0) 
-            {
-                printf("\n");
-                break;
-            } 
-            else 
-            {
-                fprintf(stderr, "Error reading input\n");
-                continue;
-            }
+            printf("\n");
+            break;
         }
+
         buffer[strcspn(buffer, "\n")] = 0;
+        if (buffer[0] == '\0') 
+        {
+            continue;
+        }
 
         if (strcmp(buffer, "exit") == 0) 
         {
