@@ -12,5 +12,5 @@ int tokenize_input(char *buffer, char **args, int max_args)
         token = strtok(NULL, " ");
     }
     args[argCount] = NULL;
-    return argCount;
+    return (argCount);
 }
