@@ -17,6 +17,11 @@ int main(void)
         printf("$ ");
         length = getline(&buffer, &bufferSize, stdin);
 
+        if (length == 1 && buffer[0] == '\n') 
+        {
+            continue;
+        }
+
         if (length == -1) 
         {
             printf("\n");
