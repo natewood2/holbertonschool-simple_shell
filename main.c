@@ -14,7 +14,10 @@ int main(int ac __attribute__((unused)), char **av __attribute__((unused)))
 
     while (1) 
     {
-        printf("$ ");
+        if (isatty(STDIN_FILENO)) 
+        {
+            printf("$ ");
+        }
         length = getline(&buffer, &bufferSize, stdin);
 
         if (length == -1) 
