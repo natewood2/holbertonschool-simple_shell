@@ -30,7 +30,7 @@ int main(void)
 
         if (buffer[length - 1] == '\n') 
         {
-            buffer[length - 1] = '\0';\
+            buffer[length - 1] = '\0';
         }
 
         if (strcmp(buffer, "exit") == 0) 
