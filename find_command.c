@@ -24,7 +24,7 @@ char *find_command_in_path(const char *cmd)
     token = strtok(path, ":");
     while (token != NULL) 
     {
-        full_path_size = strlen(token) + strlen(cmd) + 2;
+        full_path_size = strlen(token) + strlen(cmd) + 1;
         full_path = malloc(full_path_size);
 
         if (full_path) 
