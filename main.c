@@ -31,6 +31,8 @@ int main(int ac __attribute__((unused)), char **av __attribute__((unused)))
             buffer[length - 1] = '\0';
             length--;
         }
+        trim_trailing_spaces(buffer);
+
         if (buffer[0] == '\0') 
         {
             continue;
