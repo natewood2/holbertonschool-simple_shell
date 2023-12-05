@@ -15,22 +15,24 @@ int main(void)
     while (1) 
     {
         printf("$ ");
+        fflush(stdout);
+        
         length = getline(&buffer, &bufferSize, stdin);
 
-        if (length == 1 && buffer[0] == '\n') 
-        {
-            continue;
-        }
-
-        if (length == -1) 
+        if (length <= 0) 
         {
             printf("\n");
             break;
         }
 
-        if (length > 0 && buffer[length - 1] == '\n') 
+        if (buffer[length - 1] == '\n') 
         {
-            buffer[length - 1] = '\0';
+            buffer[length - 1] = '\0';\
+        }
+
+        if (strcmp(buffer, "exit") == 0) 
+        {
+            break;
         }
 
         process_command(buffer);
