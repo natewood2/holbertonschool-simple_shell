@@ -11,6 +11,7 @@ int main(int ac __attribute__((unused)), char **av __attribute__((unused)))
     char *buffer = NULL;
     size_t bufferSize = 0;
     ssize_t length;
+    char *pos;
 
     while (1) 
     {
@@ -20,13 +21,17 @@ int main(int ac __attribute__((unused)), char **av __attribute__((unused)))
         }
         length = getline(&buffer, &bufferSize, stdin);
 
+        if ((pos = strchr(buffer, '\n')) != NULL)
+        {
+            *pos = '\0';
+        }   
+
         if (length == -1) 
         {
             printf("\n");
             break;
         }
         buffer[strcspn(buffer, "\n")] = '\0';
-        buffer[strlen(buffer)] = '\0';
         if (buffer[0] == '\0') 
         {
             continue;
