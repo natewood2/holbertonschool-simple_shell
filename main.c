@@ -25,7 +25,6 @@ int main(int ac __attribute__((unused)), char **av __attribute__((unused)))
             printf("\n");
             break;
         }
-        // buffer[strcspn(buffer, "\n")] = 0;
         buffer[strcspn(buffer, "\n")] = '\0';
         if (buffer[0] == '\0') 
         {
