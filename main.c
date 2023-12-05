@@ -5,75 +5,50 @@
 #include <unistd.h>
 #include "main.h"
 #include "command.h"
-int main(int ac __attribute__((unused)), char **av __attribute__((unused)))
+
+int main(int ac __attribute__((unused)), char **av __attribute__((unused))) 
 {
-	char *buffer = NULL;
-	size_t bufferSize = 0;
-	int value;
-	char *fullPath;
-	pid_t pid;
-	char *args[10];
-	int argCount;
-	char *token;
+    char *buffer = NULL;
+    size_t bufferSize = 0;
+    ssize_t length;
+    int i;
 
-	/* Infinite loop for the shell prompt */
-	while (1)
-	{
-		printf("$ "); /* Display the shell prompt */
-		value = getline(&buffer, &bufferSize, stdin);
+    while (1) 
+    {
+        if (isatty(STDIN_FILENO)) 
+        {
+            printf("$ ");
+            fflush(stdout);
+        }
+        length = getline(&buffer, &bufferSize, stdin);
 
-		/* Check if getline failed */
-		if (value == -1)
-		{
-			printf("\n");
-			free(buffer);
-			exit(EXIT_FAILURE);
-		}
-		buffer[strcspn(buffer, "\n")] = 0;
+        if (length <= 0) 
+        {
+            printf("\n");
+            break;
+        }
+        for (i = 0; i < length; i++) 
+        {
+            if (buffer[i] == '\n') 
+            {
+                buffer[i] = ' ';
+            }
+        }
 
-		/* Check for 'exit' command */
-		if (strcmp(buffer, "exit") == 0)
-		{
-			break;
-		}
+        if (buffer[0] == '\0') 
+        {
+            continue;
+        }
 
-		/* Tokenize the input into arguments */
-		argCount = 0;
-		token = strtok(buffer, " ");
-		while (token != NULL && argCount < 10)
-		{
-			args[argCount++] = token;
-			token = strtok(NULL, " ");
-		}
-		args[argCount] = NULL;
+        if (strcmp(buffer, "exit") == 0) 
+        {
+            break;
+        }
 
-		/* Find the full path of the command */
-		fullPath = find_command_in_path(args[0]);
-		if (fullPath == NULL)
-		{
-			fprintf(stderr, "Command not found: %s\n", args[0]);
-			continue;
-		}
+        process_command(buffer);
 
-		/* Fork the process */
-		pid = fork();
-		if (pid == 0) /* Child process */
-		{
-			execve(fullPath, args, environ);
-			fprintf(stderr, "Failed to execute '%s'\n", fullPath);
-			exit(EXIT_FAILURE);
-		}
-		/* Parent process */
-		else if (pid > 0)
-		{
-			wait(NULL); /* Wait for child to be finished */
-		}
-		else /* Fork failed */
-		{
-			fprintf(stderr, "Failed to fork\n");
-		}
-		free(fullPath);
-	}
-	free(buffer);
-	return (0); /* Return success */
+    }
+
+    free(buffer);
+    return (0);
 }
