@@ -1,6 +1,8 @@
 #ifndef MAIN_H
 #define MAIN_H
 
+#define MAX_ARGS 10
+
 /* Include necessary libraries for standard I/O, memory management, etc. */
 #include <stdio.h>
 #include <stdlib.h>
@@ -12,7 +14,7 @@
 
 extern char **environ;
 /* Define the main function, which is the entry point of the program. */
-int main(int ac __attribute__((unused)), char **av);
+int main(void);
 
 char *_strtok(char *str, const char *delim);
 char *find_command_in_path(const char *cmd);

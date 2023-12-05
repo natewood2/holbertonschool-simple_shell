@@ -2,27 +2,24 @@
 
 void process_command(char *buffer) 
 {
-    char *args[10];
-    int maxArgs = 10;
-    char *fullPath;
-    
-    tokenize_input(buffer, args, maxArgs);
+    char *args[MAX_ARGS];
+    char *token;
+    int argCount = 0;
 
-    if (is_absolute_or_relative_path(args[0])) 
+    token = strtok(buffer, " ");
+    while (token != NULL && argCount < MAX_ARGS) 
     {
-        fullPath = strdup(args[0]);
-    } 
-    else 
-    {
-        fullPath = find_command_in_path(args[0]);
+        args[argCount++] = token;
+        token = strtok(NULL, " ");
     }
+    args[argCount] = NULL;
 
-    if (fullPath == NULL) 
+    if (args[0] != NULL) 
     {
-        fprintf(stderr, "Command not found: %s\n", args[0]);
-        return;
+        if (strcmp(args[0], "exit") == 0) 
+        {
+            exit(0);
+        }
+        execute_command(args[0], args);
     }
-
-    execute_command(fullPath, args);
-    free(fullPath);
 }
