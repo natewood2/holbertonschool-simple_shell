@@ -2,7 +2,10 @@
 
 void execute_command(char *fullPath, char **args) 
 {
-    pid_t pid = fork();
+    pid_t pid;
+    int status;
+
+    pid = fork();
     if (pid == 0) 
     {
         if (execve(fullPath, args, environ) == -1) 
@@ -13,7 +16,6 @@ void execute_command(char *fullPath, char **args)
     } 
     else if (pid > 0) 
     {
-        int status;
         waitpid(pid, &status, 0);
     } 
     else 

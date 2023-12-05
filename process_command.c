@@ -5,7 +5,7 @@ void process_command(char *buffer)
     char *args[10];
     int maxArgs = 10;
     char *fullPath;
-
+    
     tokenize_input(buffer, args, maxArgs);
 
     if (is_absolute_or_relative_path(args[0])) 
