@@ -71,5 +71,6 @@ int main(void)
         bufferSize = 0;
     }
 
+    free(path);
     return 0;
 }
