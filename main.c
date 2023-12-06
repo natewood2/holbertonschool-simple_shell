@@ -29,10 +29,11 @@ int main(void)
         value = getline(&buffer, &bufferSize, stdin);
         if (value == -1) 
         {
-            printf("\n");
+            free(buffer);
             free(path);
-            break;
+            exit(EXIT_SUCCESS);
         }
+
 
         buffer[value - 1] = '\0';
         if (strcmp(buffer, "exit") == 0) 
