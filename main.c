@@ -69,8 +69,9 @@ int main(void)
         free(buffer);
         buffer = NULL;
         bufferSize = 0;
+        free(path);
+        path = NULL;
     }
 
-    free(path);
     return 0;
 }
