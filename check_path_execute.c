@@ -1,5 +1,10 @@
 #include "main.h"
-
+/**
+ * check_path_and_execute - checking path and execution
+ * @cmd: command
+ * @args: arguments
+ * Return: (1)
+*/
 int check_path_and_execute(const char *cmd, char **args) 
 {
     char *path = get_environ(environ);
