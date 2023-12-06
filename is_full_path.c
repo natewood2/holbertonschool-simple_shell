@@ -1,6 +1,10 @@
 #include "main.h"
-
-int is_full_path(const char *cmd) 
+/**
+ * is_full_path - Checks if a command is a full path or not
+ * @cmd: The command to check
+ * Return: 1 if command is full path, otherwise 0
+ */
+int is_full_path(const char *cmd)
 {
-    return strchr(cmd, '/') != NULL;
+	return (strchr(cmd, '/') != NULL);
 }
