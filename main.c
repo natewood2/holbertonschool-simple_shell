@@ -1,6 +1,10 @@
 #include "main.h"
 #include "command.h"
-
+/**
+ * main - Entry point of Shell program
+ *
+ * Return: returns 0 upon successful completion
+ */
 int main(void)
 {
 	char *buffer = NULL;
