@@ -20,6 +20,6 @@ char *get_environ(char **env)
         }
         env++;
     }
-
+    free(path);
     return path;
 }
