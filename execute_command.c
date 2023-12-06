@@ -1,17 +1,16 @@
 #include "main.h"
 
-void execute_command(char *fullPath, char **args) {
+int execute_command(char *command, char **args) 
+{
     pid_t pid;
-    int status;
+    int status = 0;
 
     pid = fork();
     if (pid == 0) 
     {
-        if (execve(fullPath, args, NULL) == -1) 
-        {
-            fprintf(stderr, "Failed to execute '%s'\n", fullPath);
-            exit(EXIT_FAILURE);
-        }
+        execve(command, args, NULL);
+        perror("execve");
+        exit(EXIT_FAILURE);
     } 
     else if (pid > 0) 
     {
@@ -19,6 +18,7 @@ void execute_command(char *fullPath, char **args) {
     } 
     else 
     {
-        fprintf(stderr, "Failed to fork\n");
+        perror("fork");
     }
+    return (status);
 }

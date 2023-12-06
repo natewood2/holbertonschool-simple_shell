@@ -8,37 +8,79 @@
 
 int main(void) 
 {
+    const int MAX_PATH_LENGTH = 1024;
     char *buffer = NULL;
     size_t bufferSize = 0;
-    ssize_t length;
+    ssize_t value;
+    char **args;
+    char *commandPath;
+    int i;
 
     while (1) 
     {
-        if (isatty(STDIN_FILENO))
+        printf("$ ");
+        fflush(stdout);
+
+        value = getline(&buffer, &bufferSize, stdin);
+
+        if (value == -1) 
         {
-            printf("$ ");
-            fflush(stdout);
+            if (bufferSize == 0 || buffer[0] == '\0') 
+            {
+                printf("\n");
+                break;
+            } 
+            else 
+            {
+                free(buffer);
+                buffer = NULL;
+                bufferSize = 0;
+                continue;
+            }
         }
 
-        length = getline(&buffer, &bufferSize, stdin);
+        buffer[value - 1] = '\0';
 
-        if (length <= 0) 
-        {
-            printf("\n");
+        if (strcmp(buffer, "exit") == 0) {
             break;
         }
 
-        if (buffer[length - 1] == '\n') 
+        args = malloc(sizeof(char *) * (MAX_PATH_LENGTH / 2));
+        if (!args) 
         {
-            buffer[length - 1] = '\0';
+            perror("malloc");
+            continue;
         }
 
-        if (strcmp(buffer, "exit") == 0) 
+        args[0] = strtok(buffer, " ");
+        for (i = 1; i < MAX_PATH_LENGTH / 2 && args[i - 1] != NULL; i++) 
         {
-            break;
+            args[i] = strtok(NULL, " ");
         }
 
-        process_command(buffer);
+        if (args[0] != NULL) 
+        {
+            if (is_full_path(args[0])) 
+            {
+                commandPath = strdup(args[0]);
+            } 
+            else 
+            {
+                commandPath = find_command_in_path(args[0]);
+            }
+
+            if (commandPath) 
+            {
+                execute_command(commandPath, args);
+                free(commandPath);
+            } 
+            else 
+            {
+                printf("%s: Command not found\n", args[0]);
+            }
+        }
+
+        free(args);
     }
 
     free(buffer);
