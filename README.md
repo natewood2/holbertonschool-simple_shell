@@ -46,5 +46,3 @@ A simple shell allows the users to input commands to direct the system through b
  - [Making your own Linux Shell in C](https://www.geeksforgeeks.org/making-linux-shell-c/)
   - [Writing Your Own Shell](https://www.cs.purdue.edu/homes/grr/SystemsProgrammingBook/Book/Chapter5-WritingYourOwnShell.pdf)
 - [Write a Shell in C](https://brennan.io/2015/01/16/write-a-shell-in-c/)
-
-![SHELL flowchart drawio](https://github.com/natewood2/holbertonschool-simple_shell/assets/144153433/021248ee-a649-4b14-aa3f-885923906c51)
