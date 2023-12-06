@@ -18,8 +18,11 @@ int main(void)
 
     while (1) 
     {
-        printf("$ ");
-        fflush(stdout);
+        if (isatty(STDIN_FILENO))
+        {
+            printf("$ ");
+            fflush(stdout);
+        }
 
         value = getline(&buffer, &bufferSize, stdin);
 
