@@ -17,6 +17,8 @@ extern char **environ;
 int main(void);
 
 char *_strtok(char *str, const char *delim);
+char *get_environ(char **env);
+char *construct_full_path(const char *dir, const char *cmd);
 char *find_command_in_path(const char *cmd);
 int can_execute_command(const char *full_path);
 void process_command(char *buffer);
@@ -27,6 +29,7 @@ int is_absolute_or_relative_path(const char *cmd);
 int is_full_path(const char *cmd);
 void trim_trailing_spaces(char *str);
 int execute_command(char *command, char **args);
+int check_path_and_execute(const char *cmd, char **args);
 
 
 #endif

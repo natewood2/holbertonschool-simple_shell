@@ -12,9 +12,9 @@ int main(void)
     size_t bufferSize = 0;
     ssize_t value;
     char *args[20];
-    char *commandPath;
-    char *token;
+    int commandFound;
     int i;
+    char *token;
 
     while (1) 
     {
@@ -22,7 +22,6 @@ int main(void)
         fflush(stdout);
 
         value = getline(&buffer, &bufferSize, stdin);
-
         if (value == -1) 
         {
             printf("\n");
@@ -30,7 +29,6 @@ int main(void)
         }
 
         buffer[value - 1] = '\0';
-
         if (strcmp(buffer, "exit") == 0) 
         {
             break;
@@ -49,21 +47,15 @@ int main(void)
         {
             if (strchr(args[0], '/')) 
             {
-                commandPath = strdup(args[0]);
+                execute_command(args[0], args);
             } 
             else 
             {
-                commandPath = find_command_in_path(args[0]);
-            }
-
-            if (commandPath) 
-            {
-                execute_command(commandPath, args);
-                free(commandPath);
-            } 
-            else 
-            {
-                printf("%s: Command not found\n", args[0]);
+                commandFound = check_path_and_execute(args[0], args);
+                if (!commandFound) 
+                {
+                    printf("%s: Command not found\n", args[0]);
+                }
             }
         }
 
