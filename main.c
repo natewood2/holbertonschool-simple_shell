@@ -15,7 +15,7 @@ int main(void)
     int commandFound;
     int i;
     char *token;
-    char *path;
+    char *path = NULL;
 
     while (1) 
     {
@@ -29,16 +29,24 @@ int main(void)
         value = getline(&buffer, &bufferSize, stdin);
         if (value == -1) 
         {
-            free(buffer);
-            free(path);
+            if (buffer) 
+            {
+                free(buffer);
+            }
+            if (path) 
+            {
+                free(path);
+            }
             exit(EXIT_SUCCESS);
         }
-
 
         buffer[value - 1] = '\0';
         if (strcmp(buffer, "exit") == 0) 
         {
-            free(path);
+            if (path) 
+            {
+                free(path);
+            }
             break;
         }
 
@@ -53,7 +61,8 @@ int main(void)
 
         if (args[0] != NULL) 
         {
-            if (strchr(args[0], '/')) {
+            if (strchr(args[0], '/')) 
+            {
                 execute_command(args[0], args);
             } 
             else 
@@ -66,11 +75,17 @@ int main(void)
             }
         }
 
-        free(buffer);
+        if (buffer) 
+        {
+            free(buffer);
+        }
         buffer = NULL;
         bufferSize = 0;
-        free(path);
-        path = NULL;
+        if (path) 
+        {
+            free(path);
+            path = NULL;
+        }
     }
 
     return 0;
