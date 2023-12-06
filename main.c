@@ -6,49 +6,72 @@
 #include "main.h"
 #include "command.h"
 
-int main(int ac __attribute__((unused)), char **av __attribute__((unused))) 
+int main(void) 
 {
     char *buffer = NULL;
     size_t bufferSize = 0;
-    ssize_t length;
+    ssize_t value;
+    char *args[20];
+    int commandFound;
     int i;
+    char *token;
+    char *path;
 
     while (1) 
     {
+        path = get_environ(environ);
+
         if (isatty(STDIN_FILENO)) 
         {
-            printf("$ ");
-            fflush(stdout);
+            write(STDOUT_FILENO, "$ ", 2);
         }
-        length = getline(&buffer, &bufferSize, stdin);
 
-        if (length <= 0) 
+        value = getline(&buffer, &bufferSize, stdin);
+        if (value == -1) 
         {
-            printf("\n");
+            free(buffer);
+            free(path);
+            exit(EXIT_SUCCESS);
+        }
+
+
+        buffer[value - 1] = '\0';
+        if (strcmp(buffer, "exit") == 0) 
+        {
+            free(path);
             break;
         }
-        for (i = 0; i < length; i++) 
+
+        i = 0;
+        token = strtok(buffer, " \n\t");
+        while (token != NULL && i < 20) 
         {
-            if (buffer[i] == '\n') 
+            args[i++] = token;
+            token = strtok(NULL, " \n\t");
+        }
+        args[i] = NULL;
+
+        if (args[0] != NULL) 
+        {
+            if (strchr(args[0], '/')) {
+                execute_command(args[0], args);
+            } 
+            else 
             {
-                buffer[i] = ' ';
+                commandFound = check_path_and_execute(args[0], args);
+                if (!commandFound) 
+                {
+                    printf("%s: Command not found\n", args[0]);
+                }
             }
         }
 
-        if (buffer[0] == '\0') 
-        {
-            continue;
-        }
-
-        if (strcmp(buffer, "exit") == 0) 
-        {
-            break;
-        }
-
-        process_command(buffer);
-
+        free(buffer);
+        buffer = NULL;
+        bufferSize = 0;
+        free(path);
+        path = NULL;
     }
 
-    free(buffer);
-    return (0);
+    return 0;
 }
