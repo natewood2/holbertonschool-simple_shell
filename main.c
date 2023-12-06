@@ -8,62 +8,46 @@
 
 int main(void) 
 {
-    const int MAX_PATH_LENGTH = 1024;
     char *buffer = NULL;
     size_t bufferSize = 0;
     ssize_t value;
-    char **args;
+    char *args[20];
     char *commandPath;
+    char *token;
     int i;
 
     while (1) 
     {
-        if (isatty(STDIN_FILENO))
-        {
-            printf("$ ");
-            fflush(stdout);
-        }
+        printf("$ ");
+        fflush(stdout);
 
         value = getline(&buffer, &bufferSize, stdin);
 
         if (value == -1) 
         {
-            if (bufferSize == 0 || buffer[0] == '\0') 
-            {
-                printf("\n");
-                break;
-            } 
-            else 
-            {
-                free(buffer);
-                buffer = NULL;
-                bufferSize = 0;
-                continue;
-            }
+            printf("\n");
+            break;
         }
 
         buffer[value - 1] = '\0';
 
-        if (strcmp(buffer, "exit") == 0) {
+        if (strcmp(buffer, "exit") == 0) 
+        {
             break;
         }
 
-        args = malloc(sizeof(char *) * (MAX_PATH_LENGTH / 2));
-        if (!args) 
+        i = 0;
+        token = strtok(buffer, " \n\t");
+        while (token != NULL && i < 20) 
         {
-            perror("malloc");
-            continue;
+            args[i++] = token;
+            token = strtok(NULL, " \n\t");
         }
-
-        args[0] = strtok(buffer, " ");
-        for (i = 1; i < MAX_PATH_LENGTH / 2 && args[i - 1] != NULL; i++) 
-        {
-            args[i] = strtok(NULL, " ");
-        }
+        args[i] = NULL;
 
         if (args[0] != NULL) 
         {
-            if (is_full_path(args[0])) 
+            if (strchr(args[0], '/')) 
             {
                 commandPath = strdup(args[0]);
             } 
@@ -83,9 +67,10 @@ int main(void)
             }
         }
 
-        free(args);
+        free(buffer);
+        buffer = NULL;
+        bufferSize = 0;
     }
 
-    free(buffer);
     return 0;
 }
