@@ -15,22 +15,29 @@ int main(void)
     int commandFound;
     int i;
     char *token;
+    char *path;
 
     while (1) 
     {
-        printf("$ ");
-        fflush(stdout);
+        path = get_environ(environ);
+
+        if (isatty(STDIN_FILENO)) 
+        {
+            write(STDOUT_FILENO, "$ ", 2);
+        }
 
         value = getline(&buffer, &bufferSize, stdin);
         if (value == -1) 
         {
             printf("\n");
+            free(path);
             break;
         }
 
         buffer[value - 1] = '\0';
         if (strcmp(buffer, "exit") == 0) 
         {
+            free(path);
             break;
         }
 
@@ -45,8 +52,7 @@ int main(void)
 
         if (args[0] != NULL) 
         {
-            if (strchr(args[0], '/')) 
-            {
+            if (strchr(args[0], '/')) {
                 execute_command(args[0], args);
             } 
             else 
