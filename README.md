@@ -39,7 +39,7 @@ A simple shell allows the users to input commands to direct the system through b
 | `AUTHOR` | List of people who contributed to this project |
 
 
-## Installation:
+# Installation:
 To access our Shell follow the following steps:
 ```bash
 git clone (https://github.com/natewood2/holbertonschool-simple_shell.git)
@@ -48,16 +48,14 @@ To compile the given files use:
 ```bash
 gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh
 ```
-Once you compile it do this to run program:
+Once compiled, do this to run program:
 ```bash
 ./hsh
 ```
-## Testing:
-After installing the program and running it. It'll show a given prompt of ("$ "), in which you may then enter a command:
+# Testing:
+After installing and running the program, it will display a prompt with the symbol "$", At this point, you may enter a command.
 
-Example:
-
-Prompt
+### Prompt
 ```bash
 $
 ```
