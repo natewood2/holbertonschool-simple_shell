@@ -18,7 +18,7 @@ Simple Shell project aims to deepen knowledge in critical aspects of UNIX shell 
 
 ## How 'Simple Shell' Works:
 
-A simple shell allows the users to input commands to direct the system through breaking down the components which it runs into a infinite loop to locates the executable command listed in the system's PATH. It thens tokenlized the input to determind the wanted command. On each commands a child process is created which then, the parent process waits for the child process to be excecuted. As it locates the command's path it prints out the located memories.
+A simple shell enables users to input commands, directing the system by breaking down components and running them in an infinite loop. This loop searches for the executable command in the system's PATH. The input is then tokenized to determine the desired command. For each command, a child process is created. The parent process waits for the execution of this child process. As the command's path is identified, the shell outputs the located memory addresses.
 
 ## Repository Files
 
@@ -40,7 +40,7 @@ A simple shell allows the users to input commands to direct the system through b
 
 
 # Installation:
-To access our Shell follow the following steps:
+Follow these steps to access our Shell:
 ```bash
 git clone (https://github.com/natewood2/holbertonschool-simple_shell.git)
 ```
@@ -48,7 +48,7 @@ To compile the given files use:
 ```bash
 gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh
 ```
-Once compiled, do this to run program:
+Once compiled, follow this step to run program:
 ```bash
 ./hsh
 ```
