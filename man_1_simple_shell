@@ -1,20 +1,20 @@
-.TH [Simple Shell] 1 12/7/2023
+.TH SIMPLE SHELL 1 "07 December 2023" "1.0.1" "Simple Shell Manual"
 .SH Simple Shell
-[Shell] \- [A program that takes command from the user and pass it to the operating system to execute.]
-.SH SYNOPSIS
-.B [Shell]
-[function usage and options]
+[Shell] A program that takes command from the user and pass it to the operating system to execute.
 .SH DESCRIPTION
-[Shell is task with taking in commands given by the user, in the process of running in a infinite loop to find the necessary path being called out. It searches and checks if the given path exist or is executable, which then allows it to call it out if it doesn't exist it'll self exit and restart to where the infinite loop begin.]
-.SH OPTIONS
-[Describe each option your function supports. If there are no options, you can omit this section.]
+The Simple Shell is tasked with interpreting commands from the user, running in an infinite loop to find and verify called paths. It checks if paths exist and are executable. If valid, it executes the command; if not, it exits and restarts the loop.
 .SH RETURN VALUE
-[Returns exit codes: 0 upon success and 1 on errors..]
+Return values varies depending on user input. Returns exit codes: -1 for success, 1 for errors.
 .SH EXAMPLES
-[Provide some examples of how to use the function. This can be very helpful for users to understand practical applications.]
-.SH SEE ALSO
-[Related commands, files, or other resources that might be relevant.]
+.TP
+.B $ /bin/ls -l
+Lists files in long format.
+.TP
+.B $ /bin/echo "Hello World"
+Prints "Hello World" to the terminal.
 .SH BUGS
-[Known bugs: Path of ls command isn't recognized causing it to fail to execute the ls command. memory lost: 120 bytes in 1 block, issue on removing all environment variables except one and executing env.]
+The `ls` command, while operational, may not return output in the expected format. Specifically, the command executes successfully, but the length of the output might differ from the checker. This does not affect the functionality of the `ls` command in listing directory contents, but users should be aware of the potential discrepancy in output format. Ongoing efforts are being made to align the output with conventional `ls` command behavior.
+We are also experiencing a memory issue regrading 120 bytes of reachable memory in the exit function. Exit should work without issue but this does not meet the checkers requirements.
+Also, env not returning the needed status to pass the checker.
 .SH AUTHOR
-[Nathan Woods and Kevin Vang]
+Nathan Woods and Kevin Vang
