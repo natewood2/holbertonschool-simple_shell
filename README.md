@@ -69,7 +69,7 @@ This command will list the files of the directory. We encourage you to experimen
 
 ## Flowchart
 
-![Shell project flowchart update drawio](https://github.com/natewood2/holbertonschool-simple_shell/assets/144153433/ca0ae0cf-9605-4462-9545-506e1d2419d0)
+![Shell project flowchart update drawio (1)](https://github.com/natewood2/holbertonschool-simple_shell/assets/144153433/64195d7a-423d-4a84-9be3-a2ffced11e4a)
 
 
 ## Authors
