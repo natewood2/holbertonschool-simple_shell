@@ -69,7 +69,7 @@ This would list files of the directory.
 
 ## Flowchart
 
-![SHELL flowchart drawio](https://github.com/natewood2/holbertonschool-simple_shell/assets/144153433/021248ee-a649-4b14-aa3f-885923906c51)
+![Shell project flowchart update drawio](https://github.com/natewood2/holbertonschool-simple_shell/assets/144153433/ca0ae0cf-9605-4462-9545-506e1d2419d0)
 
 
 ## Authors
