@@ -30,6 +30,7 @@ A simple shell project in C, typically involves creating a basic command-line in
 | `make_path.c` | File creates full path by combining directory path and command name. |
 | `max_ppid`   |   File script that is used to find the process of the PPID.      |
 | `README.md`  |   Description file of the project.       |
+| `AUTHOR` | List of people who contributed to this project |
 
 
 ## Installation:
