@@ -19,6 +19,7 @@ char *find_command_in_path(const char *cmd)
 		return (NULL);
 	}
 
+	/* Iterate through envir var to find PATH */
 	for (i = 0; environ[i] != NULL; i++)
 	{
 		if (strncmp(environ[i], "PATH=", 5) == 0)
@@ -34,10 +35,13 @@ char *find_command_in_path(const char *cmd)
 		return (NULL);
 	}
 
+	/* Tokenize PATH and search for the command */
 	token = strtok(path, ":");
 	while (token != NULL)
 	{
+		/* Construct the full path of the command */
 		sprintf(full_path, "%s/%s", token, cmd);
+		/* Check if command exists and is executable */
 		if (access(full_path, X_OK) == 0)
 		{
 			return (full_path);
