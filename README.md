@@ -1,4 +1,5 @@
 # Simple Shell Project
+![dall__e_2023-12-07_09 44 54_-_a_creative_and_intense_image_featuring_a_simple_shell-style_linux_terminal_wreaking_havoc_in_a_city _the_terminal__resembling_a_classic_command_line_i_720](https://github.com/natewood2/holbertonschool-simple_shell/assets/144153433/f4803a87-d3fa-4d98-9043-091301a48a52)
 
 A simple shell project in C, typically involves creating a basic command-line interpreter that can execute user commands. This kind of project is often used for educational purposes to understand how operating systems handle processes and user inputs. Our task in this simple shell project is to implement the actual shell where we call out the path of executable commands written in by the user to execute them.
 
@@ -13,6 +14,11 @@ Simple Shell project aims to deepen knowledge in critical aspects of UNIX shell 
 
 ## Process Handling and Execution:
 - Learn the basics of handling and executing processes. This covers using system calls like fork, execve, and wait to control process lifecycles and execute commands.
+
+
+## How 'Simple Shell' Works:
+
+A simple shell allows the users to input commands to direct the system through breaking down the components which it runs into a infinite loop to locates the executable command listed in the system's PATH. It thens tokenlized the input to determind the wanted command. On each commands a child process is created which then, the parent process waits for the child process to be excecuted. As it locates the command's path it prints out the located memories.
 
 ## Repository Files
 
@@ -66,11 +72,6 @@ This would list files of the directory.
 ## Flowchart
 
 ![SHELL flowchart drawio](https://github.com/natewood2/holbertonschool-simple_shell/assets/144153433/021248ee-a649-4b14-aa3f-885923906c51)
-
-
-## How 'Simple Shell' Works:
-
-A simple shell allows the users to input commands to direct the system through breaking down the components which it runs into a infinite loop to locates the executable command listed in the system's PATH. It thens tokenlized the input to determind the wanted command. On each commands a child process is created which then, the parent process waits for the child process to be excecuted. As it locates the command's path it prints out the located memories.
 
 
 ## Authors
