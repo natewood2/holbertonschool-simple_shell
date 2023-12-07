@@ -55,17 +55,17 @@ Once compiled, follow this step to run program:
 # Testing:
 After installing and running the program, it will display a prompt with the symbol "$", At this point, you may enter a command.
 
-### Prompt
+### Prompt:
 ```bash
 $
 ```
 
-Enter and execute command
+### Enter and execute command:
 ```bash
 /bin/ls
 ```
 
-This would list files of the directory.
+This command will list the files of the directory. We encourage you to experiment with different commands in our simple shell to discover its versatile functionalities and to enhance your understanding of how it operates.
 
 ## Flowchart
 
