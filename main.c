@@ -16,18 +16,23 @@ int main(void)
 	char *token;
 	char *path = NULL;
 
+	/* Shell execution loop */
 	while (1)
 	{
+		/* Retrieve the PATH from the environment */
 		path = get_environ(environ);
 
+		/* Print prompt if the input is from a terminal */
 		if (isatty(STDIN_FILENO))
 		{
 			write(STDOUT_FILENO, "$ ", 2);
 		}
 
+		/* Read input from the user */
 		value = getline(&buffer, &bufferSize, stdin);
 		if (value == -1)
 		{
+			/* Handle EOF or error in input */
 			if (buffer)
 			{
 			free(buffer);
@@ -39,6 +44,7 @@ int main(void)
 			exit(EXIT_SUCCESS);
 		}
 
+		/* Process the input */
 		buffer[value - 1] = '\0';
 		if (strcmp(buffer, "exit") == 0)
 		{
@@ -49,6 +55,7 @@ int main(void)
 			break;
 		}
 
+		/* Tokenize the input into arguments */
 		i = 0;
 		token = strtok(buffer, " \n\t");
 		while (token != NULL && i < 20)
@@ -58,6 +65,7 @@ int main(void)
 		}
 		args[i] = NULL;
 
+		/* Execute the command */
 		if (args[0] != NULL)
 		{
 			if (strchr(args[0], '/'))
@@ -74,6 +82,7 @@ int main(void)
 			}
 		}
 
+		/* Clean up memory and reset variables */
 		if (buffer)
 		{
 			free(buffer);
