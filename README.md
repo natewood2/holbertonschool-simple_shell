@@ -3,7 +3,7 @@
 A simple shell project in C, typically involves creating a basic command-line interpreter that can execute user commands. This kind of project is often used for educational purposes to understand how operating systems handle processes and user inputs. Our task in this simple shell project is to implement the actual shell where we call out the path of executable commands written in by the user to execute them.
 
 ## Objectives:
-- Simple Shell project aims to deepen knowledge in critical aspects of UNIX shell operations and process management, focusing on the following key areas:
+Simple Shell project aims to deepen knowledge in critical aspects of UNIX shell operations and process management, focusing on the following key areas:
 
 ## Shell Mechanics:
 - Gain insight into the functioning of a shell as an interpreter for command-line instructions, encompassing the intricacies of processing commands and managing user input.
