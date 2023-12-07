@@ -14,13 +14,16 @@ A simple shell project in C, typically involves creating a basic command-line in
 | Files  | Functions |
 | :-----   | :--------- |
 | `main.h` | File that contains all necessary headers that allows several functions to perform operations.
+| `command.h` | File that contains all necessary headers that allows several functions to perform operations. |
 | `main.c` |  File that calls an infinite loop to find the necessary path to call out.   |
-| `command.h` |          |
+| `check_path_execute.c | File that checks for path and execution, to check if command is executable  |
+| `execute_command.c` | File that execute the command within the process, handling errors or statuses |
 | `find_command.c` |  File that search for the executable given command |
-| `is_executable.c` | File that checks if file exists and is executable    |
+| `get_environ.c` | File search for PATH envir var and retrieves its value allowing shell to locate and execute commands||
+| `is_full_path.c` | File 
+| `make_path.c` | 
 | `max_ppid`   |   File script that is used to find the process of the PPID.      |
-| `*_strtok.c` |  File that contains the strtok function that breaks the string into smaller strings call tokens by a specified delimiter. |
-| `README.md`  |   Description file of the project       |
+| `README.md`  |   Description file of the project.       |
 
 
 ## Flowchart
