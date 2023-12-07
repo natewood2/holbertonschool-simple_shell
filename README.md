@@ -1,5 +1,5 @@
 # Simple Shell Project
-![dall__e_2023-12-07_09 44 54_-_a_creative_and_intense_image_featuring_a_simple_shell-style_linux_terminal_wreaking_havoc_in_a_city _the_terminal__resembling_a_classic_command_line_i_720](https://github.com/natewood2/holbertonschool-simple_shell/assets/144153433/f4803a87-d3fa-4d98-9043-091301a48a52)
+![DALL·E 2023-12-07 13 58 01 - A creative and humorous illustration showing a giant, anthropomorphic command line interpreter (Simple Shell), characterized with a face and arms, pla](https://github.com/natewood2/holbertonschool-simple_shell/assets/143881431/6e9654a0-cfc2-4aaa-ad31-475d1b2efc8b)
 
 A simple shell project in C, typically involves creating a basic command-line interpreter that can execute user commands. This kind of project is often used for educational purposes to understand how operating systems handle processes and user inputs. Our task in this simple shell project is to implement the actual shell where we call out the path of executable commands written in by the user to execute them.
 
