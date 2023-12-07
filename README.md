@@ -19,9 +19,9 @@ A simple shell project in C, typically involves creating a basic command-line in
 | `check_path_execute.c | File that checks for path and execution, to check if command is executable  |
 | `execute_command.c` | File that execute the command within the process, handling errors or statuses |
 | `find_command.c` |  File that search for the executable given command |
-| `get_environ.c` | File search for PATH envir var and retrieves its value allowing shell to locate and execute commands||
-| `is_full_path.c` | File 
-| `make_path.c` | 
+| `get_environ.c` | File search for PATH environment variable and retrieves its value. It locates path of executable programs which it allows the shell to locate and execute commands entered by users. |
+| `is_full_path.c` | File checks if given command is a full path or not. |
+| `make_path.c` | File creates full path by combining directory path and command name. |
 | `max_ppid`   |   File script that is used to find the process of the PPID.      |
 | `README.md`  |   Description file of the project.       |
 
