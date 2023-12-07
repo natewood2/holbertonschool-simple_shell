@@ -18,7 +18,7 @@ int execute_command(char *command, char **args)
 		exit(EXIT_FAILURE);
 	}
 	else if (pid > 0)
-	}
+	{
 		waitpid(pid, &status, 0);
 	}
 	else
