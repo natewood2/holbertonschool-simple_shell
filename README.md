@@ -62,7 +62,7 @@ $
 
 ### Enter and execute command:
 ```bash
-/bin/ls
+$ /bin/ls
 ```
 
 This command will list the files of the directory. We encourage you to experiment with different commands in our simple shell to discover its versatile functionalities and to enhance your understanding of how it operates.
