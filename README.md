@@ -2,7 +2,7 @@
 
 A simple shell project in C, typically involves creating a basic command-line interpreter that can execute user commands. This kind of project is often used for educational purposes to understand how operating systems handle processes and user inputs. Our task in this simple shell project is to implement the actual shell where we call out the path of executable commands written in by the user to execute them.
 
-## Objecties:
+## Objectives:
 - Simple Shell project aims to deepen knowledge in critical aspects of UNIX shell operations and process management, focusing on the following key areas:
 
 ## Shell Mechanics:
@@ -33,6 +33,34 @@ A simple shell project in C, typically involves creating a basic command-line in
 
 
 ## Installation:
+To access our Shell follow the following steps:
+```bash
+git clone (https://github.com/natewood2/holbertonschool-simple_shell.git)
+```
+To compile the given files use:
+```bash
+gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh
+```
+Once you compile it do this to run program:
+```bash
+./hsh
+```
+## Testing:
+After installing the program and running it. It'll show a given prompt of ("$ "), in which you may then enter a command:
+
+Example:
+
+Prompt
+```bash
+$
+```
+
+Enter and execute command
+```bash
+/bin/ls
+```
+
+This would list files of the directory.
 
 ## Flowchart
 
