@@ -6,5 +6,6 @@
  */
 int is_full_path(const char *cmd)
 {
+	/* checks if '/' is present in cmd */
 	return (strchr(cmd, '/') != NULL);
 }
