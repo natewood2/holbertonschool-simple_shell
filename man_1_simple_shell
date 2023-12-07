@@ -1,0 +1,20 @@
+.TH [Simple Shell] 1 12/7/2023
+.SH Simple Shell
+[Shell] \- [A program that takes command from the user and pass it to the operating system to execute.]
+.SH SYNOPSIS
+.B [Shell]
+[function usage and options]
+.SH DESCRIPTION
+[Shell is task with taking in commands given by the user, in the process of running in a infinite loop to find the necessary path being called out. It searches and checks if the given path exist or is executable, which then allows it to call it out if it doesn't exist it'll self exit and restart to where the infinite loop begin.]
+.SH OPTIONS
+[Describe each option your function supports. If there are no options, you can omit this section.]
+.SH RETURN VALUE
+[Returns exit codes: 0 upon success and 1 on errors..]
+.SH EXAMPLES
+[Provide some examples of how to use the function. This can be very helpful for users to understand practical applications.]
+.SH SEE ALSO
+[Related commands, files, or other resources that might be relevant.]
+.SH BUGS
+[Known bugs: Path of ls command isn't recognized causing it to fail to execute the ls command. memory lost: 120 bytes in 1 block, issue on removing all environment variables except one and executing env.]
+.SH AUTHOR
+[Nathan Woods and Kevin Vang]
